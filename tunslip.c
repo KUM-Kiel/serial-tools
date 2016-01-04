@@ -155,7 +155,7 @@ int main(int argc, char **argv)
     io_wantread(tun);
     io_wantread(tty);
 
-    if (io_wait() < 0) error("IO error.");
+    if (io_wait() < 0) error("IO error. Could not wait.");
 
     /* Read commands from stdin. */
     if (io_canread(0)) {
@@ -198,7 +198,7 @@ int main(int argc, char **argv)
     if (io_canread(tun)) {
       r = io_read(tun, buffer, sizeof(buffer));
       if (r == -3) {
-        error("IO error.");
+        error("IO error. Could not read TUN.");
       } else if (r > 0) {
         /* Data. */
         j = 0;
@@ -219,7 +219,7 @@ int main(int argc, char **argv)
           }
         }
         if (j < sizeof(slip_packet)) slip_packet[j++] = END;
-        if (io_write_sync(tty, slip_packet, j) < 0) error("IO error.");
+        if (io_write_sync(tty, slip_packet, j) < 0) error("IO error. Culd not write TTY.");
       } else if (r == 0) {
         /* Closed. */
         printf("\033[KClosed.\n");
@@ -231,7 +231,7 @@ int main(int argc, char **argv)
     if (io_canread(tty)) {
       r = io_read(tty, buffer, sizeof(buffer));
       if (r == -3) {
-        error("IO error.");
+        error("IO error. Could not read TTY.");
       } else if (r > 0) {
         /* Data. */
         for (i = 0; i < r; ++i) {
@@ -242,7 +242,7 @@ int main(int argc, char **argv)
                   printf("%s http://2.%d.%d.%d/\n", trillium_model(ip_packet[3]), (int) ip_packet[3], (int) ip_packet[4], (int) ip_packet[5]);
                   fflush(stdout);
                 } else {
-                  if (io_write_sync(tun, ip_packet, received) < 0) error("IO error.");
+                  if (io_write_sync(tun, ip_packet, received) < 0) error("IO error. Could not write TUN.");
                 }
                 received = 0;
               }
