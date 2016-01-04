@@ -28,10 +28,21 @@ For more info type
 $ ./trillium --help
 ```
 
+## Downloading the Binaries
+
+You can get the latest binaries for 64-bit Linux [in the releases section](https://github.com/KUM-Kiel/serial-tools/releases/latest).
+
 ## Building Yourself
 
 Building the tools should be fairly easy.
 The tool is, however, Linux specific.
+
+If you are under Ubuntu, you can get the necessary tools by typing
+
+```text
+$ sudo apt-get update
+$ sudo apt-get install build-essential
+```
 
 For building just type
 
