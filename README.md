@@ -1,17 +1,40 @@
 # serial-tools
 
-## rs232cat
+## Usage
+
+### rs232cat
 
 Opens a connection to a tty and forwards stdin to the tty and the tty to stdout.
 
-## tunslip
+### tunslip
 
 Opens a connection to a tty and starts a SLIP connection.
 
 Packets from the tty are forwarded to a tun device and vice versa.
 
-## trillium
+### trillium
 
 Works like tunslip with the `--trillium` option.
 
 Sets the baud rate automatically and prints informations about a connected seismometer.
+
+If the Trillium is connected correctly, there shold be a message with the model name and URL of the seismometer upon startup.
+
+If you type `NMX` into the terminal, the message should be printed again.
+
+For more info type
+
+```text
+$ ./trillium --help
+```
+
+## Building Yourself
+
+Building the tools should be fairly easy.
+The tool is, however, Linux specific.
+
+For building just type
+
+```text
+$ make
+```
