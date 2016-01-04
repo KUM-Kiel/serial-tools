@@ -155,13 +155,13 @@ int main(int argc, char **argv)
     io_wantread(tun);
     io_wantread(tty);
 
-    if (io_wait() < 0) error("IO error. Could not wait.");
+    if (io_wait(0) < 0) error("IO error. Could not wait.");
 
     /* Read commands from stdin. */
     if (io_canread(0)) {
       r = io_read(0, buffer, sizeof(buffer));
       if (r == -3) {
-        error("IO error.");
+        error("IO error. Could not read stdin.");
       } else if (r > 0) {
         /* Data. */
         for (i = 0; i < r; ++i) {

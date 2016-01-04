@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     io_wantread(0);
     io_wantread(tty);
 
-    if (io_wait() < 0) error("IO error.");
+    if (io_wait(0) < 0) error("IO error.");
 
     /* Write stdin data to RS232. */
     if (io_canread(0)) {

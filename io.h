@@ -10,7 +10,7 @@ extern int io_wantwrite(int fd);
 extern int io_dontwantwrite(int fd);
 extern int io_canwrite(int fd);
 
-extern int io_wait();
+extern int io_wait(unsigned long long timeout);
 
 extern int io_nonblock(int fd);
 
