@@ -28,6 +28,8 @@ For more info type
 $ ./trillium --help
 ```
 
+There is also a detailed [how-to guide](https://github.com/KUM-Kiel/serial-tools/blob/master/Trillium-HowTo.md) available.
+
 ## Downloading the Binaries
 
 You can get the latest binaries for 64-bit Linux [in the releases section](https://github.com/KUM-Kiel/serial-tools/releases/latest).

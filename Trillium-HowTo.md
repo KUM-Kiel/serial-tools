@@ -1,8 +1,17 @@
 # Programmierung des Trillium Seismometers
 
-## Installation der Seriol-Tools
+## Installation der Serial-Tools
 
 1.  Herunterladen der neusten Binaries von [Github](https://github.com/KUM-Kiel/serial-tools/releases/latest).
+
+    Welche Datei man benötigt, kann man mit folgendem Befehl herausfinden:
+
+    ```text
+    $ uname -i
+    ```
+
+    Dies sollte entweder `x86_64`, `i386` oder `i686` anzeigen.
+    `i686` ist gleichbedeutend mit `i386`.
 
 2.  Entpacken der Tools:
 
@@ -42,7 +51,13 @@
 
 1.  Linux starten.
 
-2.  In einem Terminal folgenden Befehl eingeben
+2.  In einem Terminal folgenden Befehl eingeben:
+
+    ```text
+    $ sudo tail -f /var/log/syslog
+    ```
+
+    Falls dies nicht funktioniert, kann stattdessen dieser Befehl verwendet werden:
 
     ```text
     $ sudo dmesg -w
@@ -55,7 +70,7 @@
     [26990.148454] usb 2-1.7.2.1: pl2303 converter now attached to ttyUSB1
     ```
 
-    Dmesg kann jetzt mit Ctrl+C beendet werden.
+    Tail bzw. Dmesg kann jetzt mit Ctrl+C beendet werden.
 
 4.  Das Trillium-Programm starten.
     Hierbei benötigt man den Namen des Adapters.
@@ -66,11 +81,13 @@
     $ sudo ./trillium /dev/ttyUSB1
     ```
 
-5.  Im Terminalfenster sollte jetzt eine Nachricht, wie die folgende auftauchen:
+5.  Im Terminalfenster sollte jetzt eine Nachricht wie die folgende auftauchen:
 
     ```text
     Trillium Compact OBS http://2.43.12.95/
     ```
+
+    Solange das Programm läuft, ist das Trillium unter der ausgegebenen Adresse ereichbar.
 
 6.  Im Browser kann jetzt die entsprechende URL aufgerufen werden.
 
