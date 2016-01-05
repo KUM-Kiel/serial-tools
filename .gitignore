@@ -2,3 +2,5 @@ rs232cat
 tunslip
 trillium
 *.html
+serial-tools-*/
+*.tar.gz

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <time.h>
 #include "io.h"
 #include "options.h"
 #include "rs232.h"
@@ -34,6 +35,7 @@ static void usage(const char *opt, const char *arg, int l)
 {
   if (is_command(program, "trillium")) {
     fprintf(stderr,
+      "Serial-Tools Version " VERSION "\n"
       "\n"
       "Trillium opens a connection to a Nanometrics seismometer.\n"
       "\n"
@@ -46,10 +48,10 @@ static void usage(const char *opt, const char *arg, int l)
       "  %s [TTY]\n"
       "\n"
       "  TTY defaults to /dev/ttyUSB0.\n"
-      /*"\n"
+      "\n"
       "# Troubleshooting\n"
       "\n"
-      "You must probably be root in order to run the program.\n"*/
+      "You must probably be root in order to run the program.\n"
       "\n",
       program);
   } else {
@@ -101,6 +103,8 @@ int main(int argc, char **argv)
   unsigned char ip_packet[4096], slip_packet[4096], buffer[4096];
   int received = 0, esc = 0, i, j;
   int stdin_state = COMMAND_DEFAULT;
+  int found_trillium = 0;
+  time_t t = time(0), tt;
 
   /* Parse options. */
   program = argv[0];
@@ -146,6 +150,13 @@ int main(int argc, char **argv)
   io_nonblock(tty);
 
   if (trillium) {
+    fprintf(stderr,
+      "This is Serial-Tools Version " VERSION ".\n"
+      "\n"
+      "Leave this program running to communicate with the Trillium Seismometer.\n"
+      "Once you are finished, you can close this program with Ctrl+C.\n"
+      "\n"
+      "Searching for Trillium Seismometer ...\n");
     io_write_sync(tty, "\300NMX\300", 5);
   }
 
@@ -155,7 +166,7 @@ int main(int argc, char **argv)
     io_wantread(tun);
     io_wantread(tty);
 
-    if (io_wait(0) < 0) error("IO error. Could not wait.");
+    if (io_wait(1000000) < 0) error("IO error. Could not wait.");
 
     /* Read commands from stdin. */
     if (io_canread(0)) {
@@ -219,7 +230,7 @@ int main(int argc, char **argv)
           }
         }
         if (j < sizeof(slip_packet)) slip_packet[j++] = END;
-        if (io_write_sync(tty, slip_packet, j) < 0) error("IO error. Culd not write TTY.");
+        if (io_write_sync(tty, slip_packet, j) < 0) error("IO error. Could not write to TTY.");
       } else if (r == 0) {
         /* Closed. */
         printf("\033[KClosed.\n");
@@ -241,8 +252,9 @@ int main(int argc, char **argv)
                 if (received == 8 && !memcmp(ip_packet, "NMX", 3)) {
                   printf("%s http://2.%d.%d.%d/\n", trillium_model(ip_packet[3]), (int) ip_packet[3], (int) ip_packet[4], (int) ip_packet[5]);
                   fflush(stdout);
+                  found_trillium = 1;
                 } else {
-                  if (io_write_sync(tun, ip_packet, received) < 0) error("IO error. Could not write TUN.");
+                  if (io_write_sync(tun, ip_packet, received) < 0) error("IO error. Could not write to TUN.");
                 }
                 received = 0;
               }
@@ -275,6 +287,14 @@ int main(int argc, char **argv)
         /* Closed. */
         printf("\033[KClosed.\n");
         goto end;
+      }
+    }
+
+    /* Send NMX if no Trillium found. */
+    if (trillium && !found_trillium) {
+      if ((tt = time(0)) > t) {
+        io_write_sync(tty, "\300NMX\300", 5);
+        t = tt;
       }
     }
   }

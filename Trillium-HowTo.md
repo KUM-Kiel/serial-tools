@@ -16,12 +16,14 @@
 2.  Entpacken der Tools:
 
     ```text
-    $ tar xf serial-tools-1.0.1-linux-x86-64.tar.gz
+    $ tar xf serial-tools-1.0.2-linux-x86-64.tar.gz
     ```
 
 *Oder*
 
-1.  Installation der benötigten Programme:
+1.  Installation der benötigten Programme.
+
+    Unter Ubuntu, Debian oder LinuxMint können folgende Befehle benutzt werden:
 
     ```text
     $ sudo apt-get update
