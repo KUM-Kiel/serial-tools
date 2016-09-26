@@ -11,12 +11,14 @@
     ```
 
     Dies sollte entweder `x86_64`, `i386` oder `i686` anzeigen.
-    `i686` ist gleichbedeutend mit `i386`.
+    `i686` benötigt die gleichen Dateien wie `i386`.
 
-2.  Entpacken der Tools:
+2.  Entpacken und installieren der Tools:
 
     ```text
-    $ tar xf serial-tools-1.0.2-linux-x86-64.tar.gz
+    $ tar xf serial-tools-1.0.3-x86-64.tar.gz
+    $ cd serial-tools-1.0.3-x86-64/
+    $ sudo make install
     ```
 
 *Oder*
@@ -36,6 +38,7 @@
     $ git clone https://github.com/KUM-Kiel/serial-tools.git
     $ cd serial-tools/
     $ make
+    $ sudo make install
     ```
 
 ## Vorbereitung
@@ -79,13 +82,18 @@
     Hier im Beispiel »`ttyUSB1`«.
 
     ```text
-    $ cd /path/to/serial-tools/
-    $ sudo ./trillium /dev/ttyUSB1
+    $ trillium /dev/ttyUSB1
     ```
 
 5.  Im Terminalfenster sollte jetzt eine Nachricht wie die folgende auftauchen:
 
     ```text
+    This is Serial-Tools Version 1.0.3.
+
+    Leave this program running to communicate with the Trillium Seismometer.
+    Once you are finished, you can close this program with Ctrl+C.
+
+    Searching for Trillium Seismometer ...
     Trillium Compact OBS http://2.43.12.95/
     ```
 
