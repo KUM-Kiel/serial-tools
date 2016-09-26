@@ -34,6 +34,12 @@ There is also a detailed [how-to guide](https://github.com/KUM-Kiel/serial-tools
 
 You can get the latest binaries for 64-bit Linux [in the releases section](https://github.com/KUM-Kiel/serial-tools/releases/latest).
 
+When you have unpacked the latest release, just open a terminal, `cd` into the folder and type
+
+```test
+$ sudo make install
+```
+
 ## Building Yourself
 
 Building the tools should be fairly easy.
@@ -46,8 +52,9 @@ $ sudo apt-get update
 $ sudo apt-get install build-essential
 ```
 
-For building just type
+For building and installing just type
 
 ```text
 $ make
+$ sudo make install
 ```
