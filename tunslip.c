@@ -130,7 +130,7 @@ int main(int argc, char **argv)
   /* Open TTY. */
   if ((tty = rs232_open(tty_path, speed)) == -1) {
     fprintf(stderr, "%s\n", "Could not open TTY.");
-    if (getuid()) {
+    if (geteuid()) {
       fprintf(stderr, "%s\n", "Please try again as root!");
     }
     return 1;
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
   /* Open TUN. */
   if ((tun = tun_alloc(dev, "2.1.0.0", "255.0.0.0")) < 0) {
     fprintf(stderr, "%s\n", "Could not open TUN.");
-    if (getuid()) {
+    if (geteuid()) {
       fprintf(stderr, "%s\n", "Please try again as root!");
     }
     return 1;
