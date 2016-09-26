@@ -1,4 +1,4 @@
-VERSION=1.0.2
+VERSION=1.0.3
 
 CFLAGS=-std=c99 -Wall -pedantic -O3
 
