@@ -36,11 +36,16 @@ int main(int argc, char **argv)
   parse_options(&argc, &argv, OPTIONS(
     FLAG('f', "fast", speed, 115200),
     FLAG('s', "slow", speed, 9600),
+    FLAG(0, "2400", speed, 2400),
     FLAG(0, "4800", speed, 4800),
     FLAG(0, "9600", speed, 9600),
     FLAG(0, "19200", speed, 19200),
     FLAG(0, "57600", speed, 57600),
     FLAG(0, "115200", speed, 115200),
+    FLAG(0, "230400", speed, 230400),
+    FLAG(0, "460800", speed, 460800),
+    FLAG(0, "500000", speed, 500000),
+    FLAG(0, "1M", speed, 1000000),
     FLAG('l', "log", log, 1),
     FLAG('t', "transform", transform_n, 1),
     FLAG_CALLBACK('h', "help", usage)

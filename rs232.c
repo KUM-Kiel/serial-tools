@@ -15,11 +15,16 @@ int rs232_open(const char *path, unsigned long baud_rate)
   int fd;
 
   switch (baud_rate) {
+    case 2400L: speed = B2400; break;
     case 4800L: speed = B4800; break;
     case 9600L: speed = B9600; break;
     case 19200L: speed = B19200; break;
     case 57600L: speed = B57600; break;
     case 115200L: speed = B115200; break;
+    case 230400L: speed = B230400; break;
+    case 460800L: speed = 460800; break;
+    case 500000L: speed = 500000L; break;
+    case 1000000L: speed = 1000000L; break;
     default: return -1;
   }
 
