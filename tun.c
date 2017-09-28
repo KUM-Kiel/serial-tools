@@ -3,7 +3,6 @@
 #include <fcntl.h>
 #include <linux/if.h>
 #include <linux/if_tun.h>
-#include <net/if.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>

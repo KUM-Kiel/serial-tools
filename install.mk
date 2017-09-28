@@ -1,4 +1,4 @@
-PREFIX = /usr/local
+PREFIX ?= /usr/local
 
 install: rs232cat tunslip trillium
 	install -d "$(PREFIX)/bin"

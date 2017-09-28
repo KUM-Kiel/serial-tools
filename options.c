@@ -20,7 +20,8 @@
 
 static int fprintfs(FILE* f, const char *format, const char *str)
 {
-  while (*format) putc(*(format++), f); format++;
+  while (*format) putc(*(format++), f);
+  format++;
   while (*str)    putc(*(str++), f);
   while (*format) putc(*(format++), f);
   return 0;
@@ -28,7 +29,8 @@ static int fprintfs(FILE* f, const char *format, const char *str)
 
 static int fprintfc(FILE* f, const char *format, char c)
 {
-  while (*format) putc(*(format++), f); format++;
+  while (*format) putc(*(format++), f);
+  format++;
   putc(c, f);
   while (*format) putc(*(format++), f);
   return 0;
