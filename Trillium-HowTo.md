@@ -2,22 +2,13 @@
 
 ## Installation der Serial-Tools
 
-1.  Herunterladen der neusten Binaries von [Github](https://github.com/KUM-Kiel/serial-tools/releases/latest).
-
-    Welche Datei man benötigt, kann man mit folgendem Befehl herausfinden:
-
-    ```text
-    $ uname -i
-    ```
-
-    Dies sollte entweder `x86_64`, `i386` oder `i686` anzeigen.
-    `i686` benötigt die gleichen Dateien wie `i386`.
+1.  Herunterladen der neusten [Binaries bei Github](https://github.com/KUM-Kiel/serial-tools/releases/latest).
 
 2.  Entpacken und installieren der Tools:
 
     ```text
-    $ tar xf serial-tools-1.0.3-x86-64.tar.gz
-    $ cd serial-tools-1.0.3-x86-64/
+    $ tar xf serial-tools-2017-09-28-1.1.0-linux.tar.gz
+    $ cd serial-tools-2017-09-28-1.1.0-linux/
     $ sudo make install
     ```
 
@@ -88,7 +79,7 @@
 5.  Im Terminalfenster sollte jetzt eine Nachricht wie die folgende auftauchen:
 
     ```text
-    This is Serial-Tools Version 1.0.3.
+    This is Serial-Tools Version 1.1.0 (2017-09-28).
 
     Leave this program running to communicate with the Trillium Seismometer.
     Once you are finished, you can close this program with Ctrl+C.

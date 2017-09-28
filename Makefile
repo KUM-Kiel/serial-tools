@@ -1,4 +1,4 @@
-VERSION = 1.1.0-dev
+VERSION = 1.1.0
 DATE = 2017-09-28
 PLATFORM ?= linux
 
